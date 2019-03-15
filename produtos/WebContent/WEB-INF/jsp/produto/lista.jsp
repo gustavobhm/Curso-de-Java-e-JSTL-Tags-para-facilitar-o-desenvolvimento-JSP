@@ -20,38 +20,38 @@
 	</script>
 
 	<h1>Produtos</h1>
+	
 	<div id="mensagem"></div>
+	
 	<table width="100%">
-		<tr>
-			<td width="20%">Nome</td>
-			<td>Preco</td>
-			<td>Descricao</td>
-			<td>Data de Inicio da Venda</td>
-			<td>Usado?</td>
-			<td width="20%">Remover?</td>
-		</tr>
-		
-		<%
-			List<Produto> produtoList = (List<Produto>) request.getAttribute("produtoList");
-			for(Produto p : produtoList) {
-		%>
-		
-			<tr id="produto<%= p.getId() %>">
-				<td><%= p.getNome().toUpperCase() %></td>
-				<td><%= p.getPreco() %></td>
-				<td><%= p.getDescricao() %></td>
-				<td><%= p.getDataInicioVenda().getTime() %></td>
-				<% if(p.isUsado()) { %>
-				<td>Sim</td>
-				<% } else { %>
-				<td>Não</td>
-				<% } %>
-				<td><a href="#" onclick="return removeProduto(<%= p.getId() %>)">Remover</a></td>
+        <tr>
+            <td width="20%">Nome</td>
+            <td>Preco</td>
+            <td>Descricao</td>
+            <td>Data de Inicio da Venda</td>
+            <td>Usado?</td>
+        </tr>
+
+		<c:forEach var="p" items="${produtoList}">
+			<tr id="produto${p.id}">
+				<td>${p.nome}</td>
+				<td>${p.preco}</td>
+				<td>${p.descricao}</td>
+				<td>${p.dataInicioVenda.time}</td>
+
+				<c:if test="${p.usado}">
+					<td>Sim</td>
+				</c:if>
+				<c:if test="${not p.usado}">
+					<td>Não</td>
+				</c:if>
+
 			</tr>
-		<%
-			}
-		%>
+		</c:forEach>
+		
 	</table>
+	
 	<a href="/produtos/produto/formulario">Adicionar um produto</a>
+	
 </body>
 </html>
