@@ -34,10 +34,11 @@
 
 		<c:forEach var="p" items="${produtoList}">
 			<tr id="produto${p.id}">
+			
 				<td>${p.nome}</td>
-				<td>${p.preco}</td>
+				<td><fmt:formatNumber value="${p.preco}" type="currency"/></td>
 				<td>${p.descricao}</td>
-				<td>${p.dataInicioVenda.time}</td>
+				<td><fmt:formatDate pattern="dd/MM/yyyy" value="${p.dataInicioVenda.time}" /></td>
 
 				<c:if test="${p.usado}">
 					<td>Sim</td>
