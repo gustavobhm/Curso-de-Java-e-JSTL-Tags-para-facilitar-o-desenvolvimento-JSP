@@ -21,6 +21,8 @@
 
 	<h1>Produtos</h1>
 	
+	<h2><fmt:message key="mensagem.bemvindo" /></h2>
+	
 	<div id="mensagem"></div>
 	
 	<table width="100%">
@@ -36,9 +38,16 @@
 			<tr id="produto${p.id}">
 			
 				<td>${p.nome}</td>
-				<td><fmt:formatNumber value="${p.preco}" type="currency"/></td>
+				
+				<td>
+					<fmt:formatNumber value="${p.preco}" type="currency"/>
+				</td>
+				
 				<td>${p.descricao}</td>
-				<td><fmt:formatDate pattern="dd/MM/yyyy" value="${p.dataInicioVenda.time}" /></td>
+				
+				<td>
+					<fmt:formatDate pattern="dd/MM/yyyy" value="${p.dataInicioVenda.time}" />
+				</td>
 
 				<c:if test="${p.usado}">
 					<td>Sim</td>
@@ -52,7 +61,8 @@
 		
 	</table>
 	
-    <a href="<c:url value='/produto/formulario'></c:url>">Adicionar um produto</a>
+    <c:url value="/produto/formulario" var="linkProduto" />
+	<a href="${linkProduto}"><fmt:message key="mensagem.novoProduto" /></a>
 	
 </body>
 </html>
